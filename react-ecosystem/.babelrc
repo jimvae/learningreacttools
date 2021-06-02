@@ -1,4 +1,6 @@
 {
-    "presets": ["@babel/preset-env", "@babel/preset-react"]
+    // the presets help convert es6 to js
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": ["@babel/plugin-transform-runtime"]
 }
 // learns to run jsx (to be able to run es6)
