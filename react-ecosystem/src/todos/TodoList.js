@@ -2,15 +2,26 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
+import styled from 'styled-components';
 import { 
-    getTodos, 
     getTodosLoading,
     getCompletedTodos,
     getIncompleteTodos } from './selectors.js';
 import { loadTodos, removeTodoRequest, markTodoAsCompletedRequest } from './thunks';
 // import { removeTodo, markTodoAsCompleted } from './actions';
 // import { markTodoAsCompleted } from './actions';
-import './TodoList.css';
+
+// backticks represents tag functions 
+// const BigRedText = styled.h1` -> can be an html components
+const BigRedText = styled.button`
+    font-size: 48px;
+    color: #FF0000;
+`;
+
+const ListWrapper = styled.div`
+    max-width: 700px;
+    margin: auto;
+`;
 
 const TodoList = ({ completedTodos, incompleteTodos, onRemovePressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
     useEffect(() => {
@@ -19,7 +30,8 @@ const TodoList = ({ completedTodos, incompleteTodos, onRemovePressed, onComplete
     
     const loadingMessage = <div>Loading todos...</div>;
     const content = (
-        <div className="list-wrapper">
+        <ListWrapper>
+            {/* <BigRedText>I'm a Styled-Component!</BigRedText> */}
             <NewTodoForm />
             <h3>Incomplete:</h3>
             {incompleteTodos.map(
@@ -38,7 +50,7 @@ const TodoList = ({ completedTodos, incompleteTodos, onRemovePressed, onComplete
                 )
             }
             
-        </div>
+        </ListWrapper>
     );
     return isLoading ? loadingMessage : content;
 };
