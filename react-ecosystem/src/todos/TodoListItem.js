@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const dateFiveDaysAgo = new Date(Date.now() - 8640000 * 5);
 const TodoItemContainer = styled.div`
     background: #fff;
     border-radius: 8px;
@@ -11,10 +10,14 @@ const TodoItemContainer = styled.div`
     box-shadow: 0 4px 8px grey;
 `;
 
-const TodoItemContainerWithWarning = styled(TodoItemContainer)`
-    border-bottom: ${props => (new Date(props.createdAt) > dateFiveDaysAgo
+// by separating this, we can test this logic for selectors
+export const getBorderStyleForDate = (startingDate, currentDate) => (
+    startingDate > new Date(currentDate - 86400000 * 5)
         ? 'none'
-        : '2px solid red')};
+        : '2px solid red'
+);
+const TodoItemContainerWithWarning = styled(TodoItemContainer)`
+    border-bottom: ${props => getBorderStyleForDate(new Date(props.createdAt), Date.now())};
 `;
 
 const ButtonsContainer = styled.div`

@@ -19,11 +19,13 @@ export const getIncompleteTodos = createSelector(
     (todos) => todos.filter(todo => !todo.isCompleted),
 );
 
-// Momization ->
+// Memoization ->
 export const getCompletedTodos = createSelector(
     getTodos, 
     (todos) => todos.filter(todo => todo.isCompleted),
 );
+
+// getCompletedTodos.resultFunc(fakeTodos) to get the last function for this case
 
 
 // advantage of using this, it only rerender if
