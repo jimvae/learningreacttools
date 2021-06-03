@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 // import { createTodo } from './actions';
 // now change it to update the server
+import { getTodos } from './selectors.js';
+
 import { addTodoRequest } from './thunks.js';
 import './NewTodoForm.css';
 
@@ -33,7 +35,7 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
 };
 
 const mapStateToProps = state => ({
-    todos: state.todos,
+    todos: getTodos(state),
 });
 
 const mapDispatchToProps = dispatch => ({
